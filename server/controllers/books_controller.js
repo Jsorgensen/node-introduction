@@ -1,20 +1,19 @@
-var books = []
-
+var books = [];
 var id = 0;
 
 module.exports = {
-    create(req, res){
+    create:(req, res)=>{
         const {title, author} = req.body;
         books.push({id, title, author});
         id++;
         res.status(200).send(books);
     },
-    read(req, res){
+    read:(req, res)=>{
         res.status(200).send(books);
     },
-    update(req, res){
-        var updateID = req.params.id;
-        var index = books.findIndex( book => book.id == updateID);
+    update:(req, res)=>{
+        const updateID = req.params.id;
+        let index = books.findIndex( book => book.id == updateID);
 
         books[index] = {
             id: books[index].id,
@@ -24,9 +23,9 @@ module.exports = {
 
         res.status(200).send(books);
     },
-    delete(req, res){
+    delete:(req, res)=>{
         var updateID = req.params.id;
-        var index = books.findIndex(books => book.id == updateID)
+        var index = books.findIndex(book => book.id == updateID)
 
         books.splice(index, 1);
 
